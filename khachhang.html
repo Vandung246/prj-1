@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thuê Sân Đê | Quản lý khách hàng</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="site-header">
+            <div class="shell header-inner">
+                <a class="brand" href="trangchu.html">
+                    <span class="brand-mark">TSD</span>
+                    <div>
+                        <strong>Thuê Sân Đê</strong>
+                        <span>Credit: Dũngcris</span>
+                    </div>
+                </a>
+                <nav class="main-nav">
+                    <a class="nav-link" href="index.html">Trang khách</a>
+                    <a class="nav-link" href="trangchu.html">Quản lý ADM</a>
+                    <a class="nav-link" href="dichvu.html">Sân bóng</a>
+                    <a class="nav-link active" href="khachhang.html">Khách hàng</a>
+                    <a class="nav-link" href="thongke.html">Lịch đặt</a>
+                </nav>
+                <div class="header-user">
+                    <span data-admin-role>Quản lý ADM</span>
+                    <strong data-admin-name>Dũngcris</strong>
+                    <button class="button-ghost" data-logout>Đăng xuất</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="page-main shell">
+            <section class="page-hero compact-hero">
+                <div class="hero-copy">
+                    <span class="eyebrow">Khách đặt sân</span>
+                    <h1>Quản lý khách hàng và đội bóng</h1>
+                    <p>Xem danh sách và lịch sử đặt.</p>
+                </div>
+            </section>
+
+            <section class="summary-strip">
+                <article class="summary-card"><span>Tổng khách hàng</span><strong id="customerTotal">0</strong></article>
+                <article class="summary-card"><span>Đang hoạt động</span><strong id="customerActive">0</strong></article>
+                <article class="summary-card"><span>VIP và đội bóng</span><strong id="customerVip">0</strong></article>
+                <article class="summary-card"><span>Tổng doanh thu</span><strong id="customerRevenue">0 VNĐ</strong></article>
+            </section>
+
+            <section class="content-grid content-grid-large">
+                <article class="panel" id="customerPanel">
+                    <div class="section-head">
+                        <div>
+                            <span class="eyebrow">Thêm hoặc sửa</span>
+                            <h2 class="section-title">Hồ sơ khách hàng</h2>
+                        </div>
+                    </div>
+                    <form id="customerForm" class="form-grid">
+                        <label class="field">
+                            <span>Họ tên</span>
+                            <input type="text" id="customerName" placeholder="Nhập họ tên khách hàng" required>
+                        </label>
+                        <label class="field">
+                            <span>Số điện thoại</span>
+                            <input type="tel" id="customerPhone" placeholder="0901234567" required>
+                        </label>
+                        <label class="field">
+                            <span>Email</span>
+                            <input type="email" id="customerEmail" placeholder="khachhang@email.com">
+                        </label>
+                        <label class="field">
+                            <span>Tên đội / nhóm</span>
+                            <input type="text" id="customerTeamName" placeholder="Ví dụ: FC Quận 7">
+                        </label>
+                        <label class="field">
+                            <span>Hạng khách hàng</span>
+                            <select id="customerLevel">
+                                <option value="standard">Khách lẻ</option>
+                                <option value="vip">VIP</option>
+                                <option value="team">Đội bóng</option>
+                            </select>
+                        </label>
+                        <label class="field">
+                            <span>Trạng thái</span>
+                            <select id="customerStatus">
+                                <option value="active">Đang hoạt động</option>
+                                <option value="inactive">Tạm ngưng</option>
+                            </select>
+                        </label>
+                        <label class="field field-span-2">
+                            <span>Ghi chú</span>
+                            <textarea id="customerNotes" rows="4" placeholder="Ghi chú về thói quen đặt sân, yêu cầu đặc biệt hoặc khung giờ quen thuộc"></textarea>
+                        </label>
+                        <div class="button-row field-span-2">
+                            <button type="submit" class="button-primary"><span id="customerSubmitLabel">Lưu khách hàng</span></button>
+                            <button type="button" class="button-secondary" id="cancelCustomerEdit" style="display:none;">Hủy chỉnh sửa</button>
+                        </div>
+                    </form>
+                </article>
+
+                <article class="panel">
+                    <div class="section-head">
+                        <div>
+                            <span class="eyebrow">Lọc danh sách</span>
+                            <h2 class="section-title">Tìm kiếm nhanh</h2>
+                        </div>
+                    </div>
+                    <div class="filters-grid">
+                        <label class="field">
+                            <span>Từ khóa</span>
+                            <input type="text" id="customerSearch" placeholder="Tên, số điện thoại, đội bóng...">
+                        </label>
+                        <label class="field">
+                            <span>Hạng</span>
+                            <select id="customerLevelFilter">
+                                <option value="">Tất cả</option>
+                                <option value="standard">Khách lẻ</option>
+                                <option value="vip">VIP</option>
+                                <option value="team">Đội bóng</option>
+                            </select>
+                        </label>
+                        <label class="field">
+                            <span>Trạng thái</span>
+                            <select id="customerStatusFilter">
+                                <option value="">Tất cả</option>
+                                <option value="active">Đang hoạt động</option>
+                                <option value="inactive">Tạm ngưng</option>
+                            </select>
+                        </label>
+                        <label class="field">
+                            <span>Sắp xếp</span>
+                            <select id="customerSort">
+                                <option value="newest">Mới nhất</option>
+                                <option value="spent">Chi tiêu cao nhất</option>
+                                <option value="bookings">Lượt đặt nhiều nhất</option>
+                                <option value="name">Tên A-Z</option>
+                            </select>
+                        </label>
+                    </div>
+                </article>
+            </section>
+
+            <section class="panel">
+                <div class="section-head">
+                    <div>
+                        <span class="eyebrow">Danh sách khách</span>
+                        <h2 class="section-title">Khách hàng hiện có</h2>
+                    </div>
+                </div>
+                <div class="table-shell">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Khách hàng</th>
+                                <th>Đội / nhóm</th>
+                                <th>Hạng</th>
+                                <th>Trạng thái</th>
+                                <th>Lượt đặt</th>
+                                <th>Tổng chi</th>
+                                <th>Lần gần nhất</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customerTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="shell">
+                <p>Credit: Dũngcris</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/store.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/khachhang.js"></script>
+</body>
+</html>

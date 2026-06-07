@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thuê Sân Đê | Quản lý ADM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="site-header">
+            <div class="shell header-inner">
+                <a class="brand" href="trangchu.html">
+                    <span class="brand-mark">TSD</span>
+                    <div>
+                        <strong>Thuê Sân Đê</strong>
+                        <span>Credit: Dũngcris</span>
+                    </div>
+                </a>
+                <nav class="main-nav">
+                    <a class="nav-link" href="index.html">Trang khách</a>
+                    <a class="nav-link active" href="trangchu.html">Quản lý ADM</a>
+                    <a class="nav-link" href="dichvu.html">Sân bóng</a>
+                    <a class="nav-link" href="khachhang.html">Khách hàng</a>
+                    <a class="nav-link" href="thongke.html">Lịch đặt</a>
+                </nav>
+                <div class="header-user">
+                    <span data-admin-role>Quản lý ADM</span>
+                    <strong data-admin-name>Dũngcris</strong>
+                    <button class="button-ghost" data-logout>Đăng xuất</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="page-main shell">
+            <section class="page-hero">
+                <div class="hero-copy">
+                    <h1>Xin chào, <span id="welcomeName">Dũngcris</span></h1>
+                    <p>Khu quản trị.</p>
+                    <div class="hero-actions">
+                        <a class="button-primary" href="thongke.html">Duyệt lịch</a>
+                        <a class="button-secondary" href="index.html">Trang khách</a>
+                    </div>
+                </div>
+                <aside class="hero-card">
+                    <h3>Hôm nay</h3>
+                    <strong id="heroBookedToday">0 lịch hôm nay</strong>
+                    <div class="hero-note">
+                        <span id="heroAvailableFields">0 sân sẵn sàng</span>
+                        <span id="heroMaintenanceFields">0 sân bảo trì</span>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="panel">
+                <div class="section-head">
+                    <div>
+                        <h2 class="section-title">Chức năng</h2>
+                    </div>
+                </div>
+                <div class="admin-tool-grid">
+                    <a class="admin-tool-card" href="dichvu.html">
+                        <span class="admin-tool-card__icon">🏟️</span>
+                        <strong>Quản lý sân bóng</strong>
+                    </a>
+                    <a class="admin-tool-card" href="khachhang.html">
+                        <span class="admin-tool-card__icon">👥</span>
+                        <strong>Quản lý khách hàng</strong>
+                    </a>
+                    <a class="admin-tool-card" href="thongke.html">
+                        <span class="admin-tool-card__icon">📅</span>
+                        <strong>Quản lý lịch đặt</strong>
+                    </a>
+                </div>
+            </section>
+
+            <section class="metrics-grid">
+                <article class="metric-card">
+                    <span>Doanh thu dự kiến</span>
+                    <strong id="metricRevenue">0 VNĐ</strong>
+                </article>
+                <article class="metric-card">
+                    <span>Lịch đang hoạt động</span>
+                    <strong id="metricBookings">0</strong>
+                </article>
+                <article class="metric-card">
+                    <span>Tổng khách hàng</span>
+                    <strong id="metricCustomers">0</strong>
+                </article>
+                <article class="metric-card">
+                    <span>Tổng giờ đã đặt</span>
+                    <strong id="metricHours">0 giờ</strong>
+                </article>
+            </section>
+
+            <section class="content-grid content-grid-large">
+                <article class="panel">
+                    <div class="section-head">
+                        <div>
+                            <h2 class="section-title">Hoạt động</h2>
+                        </div>
+                    </div>
+                    <div class="table-shell">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Mã đặt</th>
+                                    <th>Khách hàng</th>
+                                    <th>Sân và khung giờ</th>
+                                    <th>Giá trị</th>
+                                    <th>Trạng thái</th>
+                                    <th>Tạo lúc</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentBookings"></tbody>
+                        </table>
+                    </div>
+                </article>
+
+                <div class="panel-stack">
+                    <article class="panel">
+                        <div class="section-head">
+                            <div>
+                                <h2 class="section-title">Top sân</h2>
+                            </div>
+                        </div>
+                        <div id="topFields"></div>
+                    </article>
+
+                    <article class="panel">
+                        <div class="section-head">
+                            <div>
+                                <h2 class="section-title">Lịch hôm nay</h2>
+                            </div>
+                        </div>
+                        <div id="todaySchedule"></div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="content-grid">
+                <article class="panel">
+                    <div class="section-head">
+                        <div>
+                            <h2 class="section-title">Loại sân</h2>
+                        </div>
+                    </div>
+                    <div id="fieldTypeStats" class="progress-list"></div>
+                </article>
+
+                <article class="panel">
+                    <div class="section-head">
+                        <div>
+                            <h2 class="section-title">Doanh thu</h2>
+                        </div>
+                    </div>
+                    <div id="monthlyRevenue"></div>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="shell">
+                <p>Credit: Dũngcris</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/store.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

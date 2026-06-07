@@ -1,0 +1,7 @@
+{
+  "name": "web-quan-ly",
+  "private": true,
+  "dependencies": {
+    "@vercel/blob": "latest"
+  }
+}

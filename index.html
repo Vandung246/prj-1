@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thuê Sân Đê | Sân bóng top 1 Việt Nam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="site-header">
+            <div class="shell header-inner">
+                <a class="brand" href="index.html">
+                    <span class="brand-mark">TSD</span>
+                    <div>
+                        <strong>Thuê Sân Đê</strong>
+                        <span>Sân bóng top 1 Việt Nam</span>
+                    </div>
+                </a>
+                <nav class="main-nav">
+                    <a class="nav-link active" href="index.html">Trang chủ</a>
+                    <a class="nav-link" href="#fieldCatalog">Thuê sân</a>
+                    <a class="nav-link" href="#pricing">Hướng dẫn</a>
+                    <a class="nav-link" href="#bookingFormSection">Đặt sân</a>
+                </nav>
+                <div class="header-user public-header-user">
+                    <span>Hotline hỗ trợ</span>
+                    <strong>0901 234 567</strong>
+                    <a class="button-ghost admin-side-link" href="quanly-adm.html">Cổng ADM</a>
+                </div>
+            </div>
+        </header>
+
+        <main class="page-main shell">
+            <section class="home-banner">
+                <div class="home-banner__copy">
+                    <h1>Đặt sân gọn một chạm, ra sân là vào trận thật chất.</h1>
+                    <p>Chọn giờ, gửi yêu cầu, vào sân.</p>
+                    <div class="hero-actions">
+                        <a class="button-primary" href="#fieldCatalog">Xem sân đang mở</a>
+                        <a class="button-secondary" href="#bookingFormSection">Đi tới đặt sân</a>
+                    </div>
+                </div>
+
+                <aside class="home-banner__board">
+                    <div class="banner-video-card">
+                        <div class="banner-video-card__header">
+                            <strong>Highlight nổi bật</strong>
+                        </div>
+                        <div class="banner-video-shell">
+                            <video class="banner-video" autoplay muted loop playsinline preload="metadata">
+                                <source src="media/messi36ban25052019.mp4" type="video/mp4">
+                            </video>
+                            <div class="banner-video-card__overlay">
+                                <strong>Sẵn sàng vào trận, sân cỏ đã có lịch.</strong>
+                            </div>
+                        </div>
+                        <div class="banner-video-card__footer">
+                            <span>05:00 - 23:30</span>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="page-hero public-hero">
+                <div class="hero-copy">
+                    <h1>Chọn sân và đặt nhanh.</h1>
+                    <p>Điền thông tin cơ bản rồi gửi yêu cầu.</p>
+                    <div class="hero-actions">
+                        <a class="button-primary" href="#bookingFormSection">Đặt sân ngay</a>
+                        <a class="button-secondary" href="#fieldCatalog">Xem sân trống</a>
+                    </div>
+                </div>
+                <aside class="field-hero-visual">
+                    <div class="field-hero-card">
+                        <div class="pitch-visual pitch-visual-large">
+                            <div class="pitch-visual__field">
+                                <span class="pitch-visual__line pitch-visual__line-half"></span>
+                                <span class="pitch-visual__circle"></span>
+                                <span class="pitch-visual__box pitch-visual__box-left"></span>
+                                <span class="pitch-visual__box pitch-visual__box-right"></span>
+                                <span class="pitch-visual__goal pitch-visual__goal-left"></span>
+                                <span class="pitch-visual__goal pitch-visual__goal-right"></span>
+                            </div>
+                        </div>
+                        <div class="field-hero-highlights">
+                            <article class="field-mini-stat">
+                                <span class="field-mini-stat__icon">🏟️</span>
+                                <div>
+                                    <strong id="publicFieldTotal">0 sân</strong>
+                                    <span>Toàn khu</span>
+                                </div>
+                            </article>
+                            <article class="field-mini-stat">
+                                <span class="field-mini-stat__icon">🟢</span>
+                                <div>
+                                    <strong id="publicAvailableFields">0 sẵn sàng</strong>
+                                    <span>Có thể đặt ngay</span>
+                                </div>
+                            </article>
+                            <article class="field-mini-stat">
+                                <span class="field-mini-stat__icon">💸</span>
+                                <div>
+                                    <strong id="publicStartingRate">0 VNĐ</strong>
+                                    <span>Giá từ</span>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="summary-strip">
+                <article class="summary-card icon-summary-card">
+                    <div class="summary-card__top"><span class="summary-icon">📅</span><span>Lịch hôm nay</span></div>
+                    <strong id="publicTodayBookings">0</strong>
+                </article>
+                <article class="summary-card icon-summary-card">
+                    <div class="summary-card__top"><span class="summary-icon">🔥</span><span>Sân nổi bật</span></div>
+                    <strong id="publicTopField">Chưa có</strong>
+                </article>
+                <article class="summary-card icon-summary-card">
+                    <div class="summary-card__top"><span class="summary-icon">📍</span><span>Khu phổ biến</span></div>
+                    <strong id="publicTopLocation">Đang cập nhật</strong>
+                </article>
+                <article class="summary-card icon-summary-card">
+                    <div class="summary-card__top"><span class="summary-icon">📞</span><span>Hỗ trợ đặt sân</span></div>
+                    <strong>0901 234 567</strong>
+                </article>
+            </section>
+
+            <section class="panel" id="pricing">
+                <div class="section-head">
+                    <div>
+                        <span class="eyebrow">Hướng Dẫn Cơ Bản</span>
+                        <h2 class="section-title">3 bước đặt sân</h2>
+                    </div>
+                </div>
+                <div class="basic-guide">
+                    <article class="basic-guide__item">
+                        <strong>1. Chọn sân</strong>
+                        <p>Xem danh sách sân đang mở và mức giá phù hợp.</p>
+                    </article>
+                    <article class="basic-guide__item">
+                        <strong>2. Điền thông tin</strong>
+                        <p>Nhập họ tên, số điện thoại, ngày đá và giờ bắt đầu.</p>
+                    </article>
+                    <article class="basic-guide__item">
+                        <strong>3. Gửi yêu cầu</strong>
+                        <p>Kiểm tra lại tóm tắt rồi gửi yêu cầu thuê sân.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="panel" id="fieldCatalog">
+                <div class="section-head">
+                    <div>
+                        <span class="eyebrow">Danh Sách Sân</span>
+                        <h2 class="section-title">Sân khách có thể thuê</h2>
+                    </div>
+                </div>
+                <div id="homeFieldGrid" class="field-preview-grid"></div>
+            </section>
+
+            <section class="content-grid content-grid-large" id="bookingFormSection">
+                <article class="panel">
+                    <div class="section-head">
+                        <div>
+                            <span class="eyebrow">Form Đặt Sân</span>
+                            <h2 class="section-title">Gửi yêu cầu thuê sân</h2>
+                        </div>
+                    </div>
+                    <form id="publicBookingForm" class="form-grid">
+                        <label class="field">
+                            <span>Họ tên</span>
+                            <input type="text" id="publicCustomerName" placeholder="Nguyễn Văn A" required>
+                        </label>
+                        <label class="field">
+                            <span>Số điện thoại</span>
+                            <input type="tel" id="publicCustomerPhone" placeholder="0901234567" required>
+                        </label>
+                        <label class="field">
+                            <span>Email</span>
+                            <input type="email" id="publicCustomerEmail" placeholder="email@example.com">
+                        </label>
+                        <label class="field">
+                            <span>Tên đội / nhóm</span>
+                            <input type="text" id="publicCustomerTeam" placeholder="FC Cuối Tuần">
+                        </label>
+                        <label class="field">
+                            <span>Chọn sân</span>
+                            <select id="publicBookingField" required></select>
+                        </label>
+                        <label class="field">
+                            <span>Ngày đá</span>
+                            <input type="date" id="publicBookingDate" required>
+                        </label>
+                        <label class="field">
+                            <span>Giờ bắt đầu</span>
+                            <input type="time" id="publicBookingStart" required>
+                        </label>
+                        <label class="field">
+                            <span>Giờ kết thúc</span>
+                            <input type="time" id="publicBookingEnd" required>
+                        </label>
+                        <label class="field field-span-2">
+                            <span>Ghi chú</span>
+                            <textarea id="publicBookingNotes" rows="4" placeholder="Ví dụ: cần áo bib, đội 10 người, đá giao hữu..."></textarea>
+                        </label>
+                        <div class="button-row field-span-2">
+                            <button type="submit" class="button-primary">Gửi yêu cầu thuê sân</button>
+                        </div>
+                        <div id="publicBookingMessage" class="public-message field-span-2" style="display:none;"></div>
+                    </form>
+                </article>
+
+                <article class="panel booking-side-panel">
+                    <div class="section-head">
+                        <div>
+                            <span class="eyebrow">Tóm Tắt</span>
+                            <h2 class="section-title">Thông tin yêu cầu</h2>
+                        </div>
+                    </div>
+                    <div class="booking-summary-card">
+                        <article class="booking-summary-row">
+                            <span>🏟️ Sân chọn</span>
+                            <strong id="publicSummaryField">Chưa chọn sân</strong>
+                        </article>
+                        <article class="booking-summary-row">
+                            <span>💰 Giá thuê</span>
+                            <strong id="publicSummaryRate">0 VNĐ / giờ</strong>
+                        </article>
+                        <article class="booking-summary-row">
+                            <span>⏱️ Thời lượng</span>
+                            <strong id="publicSummaryDuration">0 giờ</strong>
+                        </article>
+                        <article class="booking-summary-row">
+                            <span>🧾 Tạm tính</span>
+                            <strong id="publicSummaryTotal">0 VNĐ</strong>
+                        </article>
+                    </div>
+
+                    <div class="basic-note-card">
+                        <h3>Lưu ý cơ bản</h3>
+                        <p>Kiểm tra đúng ngày và giờ trước khi gửi.</p>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="shell">
+                <p>Credit: Dũngcris</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/store.js"></script>
+    <script src="js/public.js"></script>
+</body>
+</html>

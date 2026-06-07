@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thuê Sân Đê | Lịch đặt và báo cáo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="site-header">
+            <div class="shell header-inner">
+                <a class="brand" href="trangchu.html">
+                    <span class="brand-mark">TSD</span>
+                    <div>
+                        <strong>Thuê Sân Đê</strong>
+                        <span>Credit: Dũngcris</span>
+                    </div>
+                </a>
+                <nav class="main-nav">
+                    <a class="nav-link" href="index.html">Trang khách</a>
+                    <a class="nav-link" href="trangchu.html">Quản lý ADM</a>
+                    <a class="nav-link" href="dichvu.html">Sân bóng</a>
+                    <a class="nav-link" href="khachhang.html">Khách hàng</a>
+                    <a class="nav-link active" href="thongke.html">Lịch đặt</a>
+                </nav>
+                <div class="header-user">
+                    <span data-admin-role>Quản lý ADM</span>
+                    <strong data-admin-name>Dũngcris</strong>
+                    <button class="button-ghost" data-logout>Đăng xuất</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="page-main shell">
+            <section class="page-hero compact-hero">
+                <div class="hero-copy">
+                    <span class="eyebrow">Điều phối lịch sân</span>
+                    <h1>Quản lý lịch đặt và doanh thu</h1>
+                    <p>Theo dõi lịch và thanh toán.</p>
+                </div>
+                <div class="hero-actions">
+                    <button class="button-primary" id="exportData" type="button">Xuất dữ liệu JSON</button>
+                </div>
+            </section>
+
+            <section class="summary-strip">
+                <article class="summary-card"><span>Doanh thu dự kiến</span><strong id="reportRevenue">0 VNĐ</strong></article>
+                <article class="summary-card"><span>Lịch đang hoạt động</span><strong id="reportOrders">0</strong></article>
+                <article class="summary-card"><span>Chờ xác nhận</span><strong id="reportPending">0</strong></article>
+                <article class="summary-card"><span>Giá trị trung bình</span><strong id="reportAverage">0 VNĐ</strong></article>
+            </section>
+
+            <section class="content-grid content-grid-large">
+                <article class="panel" id="bookingPanel">
+                    <div class="section-head">
+                        <div>
+                            <span class="eyebrow">Thêm hoặc sửa</span>
+                            <h2 class="section-title">Thông tin lịch đặt</h2>
+                        </div>
+                    </div>
+                    <form id="bookingForm" class="form-grid">
+                        <label class="field">
+                            <span>Khách hàng</span>
+                            <select id="bookingCustomer"></select>
+                        </label>
+                        <label class="field">
+                            <span>Sân bóng</span>
+                            <select id="bookingField"></select>
+                        </label>
+                        <label class="field">
+                            <span>Ngày đá</span>
+                            <input type="date" id="bookingDate" required>
+                        </label>
+                        <label class="field">
+                            <span>Trạng thái lịch</span>
+                            <select id="bookingStatus">
+                                <option value="pending">Chờ xác nhận</option>
+                                <option value="confirmed">Đã xác nhận</option>
+                                <option value="completed">Đã chơi</option>
+                                <option value="cancelled">Đã hủy</option>
+                            </select>
+                        </label>
+                        <label class="field">
+                            <span>Giờ bắt đầu</span>
+                            <input type="time" id="bookingStartTime" required>
+                        </label>
+                        <label class="field">
+                            <span>Giờ kết thúc</span>
+                            <input type="time" id="bookingEndTime" required>
+                        </label>
+                        <label class="field">
+                            <span>Thanh toán</span>
+                            <select id="bookingPaymentStatus">
+                                <option value="unpaid">Chưa thanh toán</option>
+                                <option value="deposit">Đã cọc</option>
+                                <option value="paid">Đã thanh toán</option>
+                                <option value="refunded">Hoàn tiền</option>
+                            </select>
+                        </label>
+                        <label class="field field-span-2">
+                            <span>Ghi chú</span>
+                            <textarea id="bookingNotes" rows="3" placeholder="Ghi chú về đội hình, đồng phục, yêu cầu đặc biệt hoặc xử lý nội bộ"></textarea>
+                        </label>
+
+                        <div class="item-builder field-span-2">
+                            <label class="field">
+                                <span>Dịch vụ thêm</span>
+                                <input type="text" id="addonName" placeholder="Ví dụ: Áo bib, nước suối, thuê bóng">
+                            </label>
+                            <label class="field item-qty">
+                                <span>Chi phí</span>
+                                <input type="number" id="addonPrice" min="0" step="1000" placeholder="0">
+                            </label>
+                            <button class="button-secondary align-end" id="addAddon" type="button">Thêm dịch vụ</button>
+                        </div>
+
+                        <div class="table-shell field-span-2 nested-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Dịch vụ</th>
+                                        <th>Chi phí</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bookingAddonsBody"></tbody>
+                            </table>
+                        </div>
+
+                        <div class="totals-box field-span-2">
+                            <div><span>Tiền sân</span><strong id="bookingFieldFee">0 VNĐ</strong></div>
+                            <div><span>Dịch vụ thêm</span><strong id="bookingAddonTotal">0 VNĐ</strong></div>
+                            <div><span>Tổng cộng</span><strong id="bookingTotal">0 VNĐ</strong></div>
+                        </div>
+
+                        <div class="button-row field-span-2">
+                            <button type="submit" class="button-primary"><span id="bookingSubmitLabel">Lưu lịch đặt</span></button>
+                            <button type="button" class="button-secondary" id="cancelBookingEdit" style="display:none;">Hủy chỉnh sửa</button>
+                        </div>
+                    </form>
+                </article>
+
+                <article class="panel">
+                    <div class="section-head">
+                        <div>
+                            <span class="eyebrow">Tra cứu nhanh</span>
+                            <h2 class="section-title">Lọc lịch đặt</h2>
+                        </div>
+                    </div>
+                    <div class="filters-grid">
+                        <label class="field">
+                            <span>Từ khóa</span>
+                            <input type="text" id="bookingSearch" placeholder="Mã đặt, khách hàng, sân, ngày đá...">
+                        </label>
+                        <label class="field">
+                            <span>Trạng thái</span>
+                            <select id="bookingStatusFilter">
+                                <option value="">Tất cả</option>
+                                <option value="pending">Chờ xác nhận</option>
+                                <option value="confirmed">Đã xác nhận</option>
+                                <option value="completed">Đã chơi</option>
+                                <option value="cancelled">Đã hủy</option>
+                            </select>
+                        </label>
+                        <label class="field">
+                            <span>Thanh toán</span>
+                            <select id="bookingPaymentFilter">
+                                <option value="">Tất cả</option>
+                                <option value="unpaid">Chưa thanh toán</option>
+                                <option value="deposit">Đã cọc</option>
+                                <option value="paid">Đã thanh toán</option>
+                                <option value="refunded">Hoàn tiền</option>
+                            </select>
+                        </label>
+                        <label class="field">
+                            <span>Sắp xếp</span>
+                            <select id="bookingSort">
+                                <option value="newest">Mới nhất</option>
+                                <option value="upcoming">Sắp diễn ra</option>
+                                <option value="oldest">Cũ nhất</option>
+                                <option value="value">Giá trị cao nhất</option>
+                            </select>
+                        </label>
+                    </div>
+                </article>
+            </section>
+
+            <section class="panel">
+                <div class="section-head">
+                    <div>
+                        <span class="eyebrow">Danh sách lịch</span>
+                        <h2 class="section-title">Theo dõi lịch đặt sân</h2>
+                    </div>
+                </div>
+                <div class="table-shell">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã đặt</th>
+                                <th>Khách hàng</th>
+                                <th>Sân</th>
+                                <th>Khung giờ</th>
+                                <th>Tổng tiền</th>
+                                <th>Trạng thái</th>
+                                <th>Thanh toán</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookingTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="content-grid">
+                <article class="panel">
+                    <div class="section-head">
+                        <div>
+                            <span class="eyebrow">Khách nổi bật</span>
+                            <h2 class="section-title">Top khách hàng</h2>
+                        </div>
+                    </div>
+                    <div id="topCustomers"></div>
+                </article>
+
+                <article class="panel">
+                    <div class="section-head">
+                        <div>
+                            <span class="eyebrow">Thanh toán</span>
+                            <h2 class="section-title">Tỷ trọng trạng thái</h2>
+                        </div>
+                    </div>
+                    <div id="paymentStats" class="progress-list"></div>
+                </article>
+            </section>
+
+            <section class="panel">
+                <div class="section-head">
+                    <div>
+                        <span class="eyebrow">Doanh thu</span>
+                        <h2 class="section-title">Xu hướng theo tháng</h2>
+                    </div>
+                </div>
+                <div id="monthlyRevenueList"></div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="shell">
+                <p>Credit: Dũngcris</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/store.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/thongke.js"></script>
+</body>
+</html>

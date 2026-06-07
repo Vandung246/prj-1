@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thuê Sân Đê | Quản lý sân bóng</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="site-header">
+            <div class="shell header-inner">
+                <a class="brand" href="trangchu.html">
+                    <span class="brand-mark">TSD</span>
+                    <div>
+                        <strong>Thuê Sân Đê</strong>
+                        <span>Credit: Dũngcris</span>
+                    </div>
+                </a>
+                <nav class="main-nav">
+                    <a class="nav-link" href="index.html">Trang khách</a>
+                    <a class="nav-link" href="trangchu.html">Quản lý ADM</a>
+                    <a class="nav-link active" href="dichvu.html">Sân bóng</a>
+                    <a class="nav-link" href="khachhang.html">Khách hàng</a>
+                    <a class="nav-link" href="thongke.html">Lịch đặt</a>
+                </nav>
+                <div class="header-user">
+                    <span data-admin-role>Quản lý ADM</span>
+                    <strong data-admin-name>Dũngcris</strong>
+                    <button class="button-ghost" data-logout>Đăng xuất</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="page-main shell">
+            <section class="page-hero field-hero">
+                <div class="hero-copy">
+                    <span class="eyebrow">Danh mục sân</span>
+                    <h1>Quản lý sân, giá giờ thuê và trạng thái khai thác</h1>
+                    <p>Thêm sân và cập nhật trạng thái.</p>
+                    <div class="hero-actions">
+                        <a class="button-primary" href="#fieldPanel">Thêm sân mới</a>
+                        <a class="button-secondary" href="#fieldPreviewGrid">Xem gallery sân</a>
+                    </div>
+                </div>
+                <aside class="field-hero-visual">
+                    <div class="field-hero-card">
+                        <div class="pitch-visual pitch-visual-large">
+                            <span class="pitch-chip pitch-chip-top">⚽ Sân đẹp</span>
+                            <span class="pitch-chip pitch-chip-right">💡 Đèn sáng</span>
+                            <span class="pitch-chip pitch-chip-bottom">🏟️ Check-in tốt</span>
+                            <div class="pitch-visual__field">
+                                <span class="pitch-visual__line pitch-visual__line-half"></span>
+                                <span class="pitch-visual__circle"></span>
+                                <span class="pitch-visual__box pitch-visual__box-left"></span>
+                                <span class="pitch-visual__box pitch-visual__box-right"></span>
+                                <span class="pitch-visual__goal pitch-visual__goal-left"></span>
+                                <span class="pitch-visual__goal pitch-visual__goal-right"></span>
+                            </div>
+                        </div>
+                        <div class="field-hero-highlights">
+                            <article class="field-mini-stat">
+                                <span class="field-mini-stat__icon">🏟️</span>
+                                <div>
+                                    <strong id="heroFieldCount">0 sân</strong>
+                                    <span>Toàn khu</span>
+                                </div>
+                            </article>
+                            <article class="field-mini-stat">
+                                <span class="field-mini-stat__icon">🟢</span>
+                                <div>
+                                    <strong id="heroReadyCount">0 sẵn sàng</strong>
+                                    <span>Khai thác ngay</span>
+                                </div>
+                            </article>
+                            <article class="field-mini-stat">
+                                <span class="field-mini-stat__icon">🔥</span>
+                                <div>
+                                    <strong id="heroHotField">Đang tải...</strong>
+                                    <span>Sân nổi bật</span>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="summary-strip">
+                <article class="summary-card icon-summary-card">
+                    <div class="summary-card__top"><span class="summary-icon">🏟️</span><span>Tổng số sân</span></div>
+                    <strong id="fieldTotal">0</strong>
+                </article>
+                <article class="summary-card icon-summary-card">
+                    <div class="summary-card__top"><span class="summary-icon">🟢</span><span>Sẵn sàng khai thác</span></div>
+                    <strong id="fieldAvailable">0</strong>
+                </article>
+                <article class="summary-card icon-summary-card">
+                    <div class="summary-card__top"><span class="summary-icon">🛠️</span><span>Đang bảo trì</span></div>
+                    <strong id="fieldMaintenance">0</strong>
+                </article>
+                <article class="summary-card icon-summary-card">
+                    <div class="summary-card__top"><span class="summary-icon">💸</span><span>Doanh thu từ sân</span></div>
+                    <strong id="fieldRevenue">0 VNĐ</strong>
+                </article>
+            </section>
+
+            <section class="content-grid content-grid-large field-visual-layout">
+                <article class="panel field-spotlight-panel">
+                    <div class="section-head">
+                        <div>
+                            <span class="eyebrow">Sân nổi bật</span>
+                            <h2 class="section-title">Khung nhìn trực quan</h2>
+                        </div>
+                    </div>
+                    <div class="field-spotlight">
+                        <div class="field-spotlight__media">
+                            <div class="pitch-visual">
+                                <span class="pitch-chip pitch-chip-top">🎯 View sân</span>
+                                <span class="pitch-chip pitch-chip-right">📸 Hình minh họa</span>
+                                <div class="pitch-visual__field">
+                                    <span class="pitch-visual__line pitch-visual__line-half"></span>
+                                    <span class="pitch-visual__circle"></span>
+                                    <span class="pitch-visual__box pitch-visual__box-left"></span>
+                                    <span class="pitch-visual__box pitch-visual__box-right"></span>
+                                    <span class="pitch-visual__goal pitch-visual__goal-left"></span>
+                                    <span class="pitch-visual__goal pitch-visual__goal-right"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field-spotlight__content">
+                            <span class="field-spotlight__eyebrow">⚡ Ưu tiên hiển thị</span>
+                            <h3 id="spotlightFieldName">Chưa có sân</h3>
+                            <p id="spotlightFieldMeta">Danh sách sân sẽ hiển thị nổi bật tại đây khi có dữ liệu.</p>
+                            <div class="field-fact-list">
+                                <article class="field-fact-card">
+                                    <span>📍</span>
+                                    <strong id="spotlightFieldLocation">-</strong>
+                                    <small>Khu vực</small>
+                                </article>
+                                <article class="field-fact-card">
+                                    <span>👥</span>
+                                    <strong id="spotlightFieldCapacity">0</strong>
+                                    <small>Sức chứa</small>
+                                </article>
+                                <article class="field-fact-card">
+                                    <span>💰</span>
+                                    <strong id="spotlightFieldRate">0 VNĐ</strong>
+                                    <small>Giá/giờ</small>
+                                </article>
+                                <article class="field-fact-card">
+                                    <span>📅</span>
+                                    <strong id="spotlightFieldBookingCount">0</strong>
+                                    <small>Lượt đặt</small>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="panel">
+                    <div class="section-head">
+                        <div>
+                            <span class="eyebrow">Lọc dữ liệu</span>
+                            <h2 class="section-title">Tìm kiếm nhanh</h2>
+                        </div>
+                    </div>
+                    <div class="filters-grid">
+                        <label class="field">
+                            <span>Từ khóa</span>
+                            <input type="text" id="fieldSearch" placeholder="Tên sân, mã sân, khu vực...">
+                        </label>
+                        <label class="field">
+                            <span>Loại sân</span>
+                            <select id="fieldTypeFilter">
+                                <option value="">Tất cả</option>
+                                <option value="Sân 5">Sân 5</option>
+                                <option value="Sân 7">Sân 7</option>
+                                <option value="Sân 11">Sân 11</option>
+                            </select>
+                        </label>
+                        <label class="field">
+                            <span>Trạng thái</span>
+                            <select id="fieldStatusFilter">
+                                <option value="">Tất cả</option>
+                                <option value="available">Sẵn sàng</option>
+                                <option value="maintenance">Bảo trì</option>
+                                <option value="inactive">Tạm ẩn</option>
+                            </select>
+                        </label>
+                        <label class="field">
+                            <span>Sắp xếp</span>
+                            <select id="fieldSort">
+                                <option value="newest">Mới nhất</option>
+                                <option value="rate-desc">Giá cao đến thấp</option>
+                                <option value="rate-asc">Giá thấp đến cao</option>
+                                <option value="bookings">Lượt đặt nhiều</option>
+                                <option value="name">Tên A-Z</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="field-filter-tips">
+                        <article class="field-tip">
+                            <span>🌙</span>
+                            <div>
+                                <strong>Khung giờ tối</strong>
+                                <p>Ưu tiên sân có đèn.</p>
+                            </div>
+                        </article>
+                        <article class="field-tip">
+                            <span>🏃</span>
+                            <div>
+                                <strong>Đội đông người</strong>
+                                <p>Chọn sân 7 hoặc sân 11.</p>
+                            </div>
+                        </article>
+                    </div>
+                </article>
+            </section>
+
+            <section class="panel">
+                <div class="section-head">
+                    <div>
+                        <span class="eyebrow">Gallery sân</span>
+                        <h2 class="section-title">Thẻ sân trực quan</h2>
+                    </div>
+                </div>
+                <div id="fieldPreviewGrid" class="field-preview-grid"></div>
+            </section>
+
+            <section class="content-grid content-grid-large">
+                <article class="panel" id="fieldPanel">
+                    <div class="section-head">
+                        <div>
+                            <span class="eyebrow">Thêm hoặc sửa</span>
+                            <h2 class="section-title">Thông tin sân bóng</h2>
+                        </div>
+                    </div>
+                    <form id="fieldForm" class="form-grid">
+                        <label class="field">
+                            <span>Tên sân</span>
+                            <input type="text" id="fieldName" placeholder="Ví dụ: Sân A1" required>
+                        </label>
+                        <label class="field">
+                            <span>Mã sân</span>
+                            <input type="text" id="fieldCode" placeholder="A1" required>
+                        </label>
+                        <label class="field">
+                            <span>Loại sân</span>
+                            <select id="fieldType">
+                                <option value="Sân 5">Sân 5</option>
+                                <option value="Sân 7">Sân 7</option>
+                                <option value="Sân 11">Sân 11</option>
+                            </select>
+                        </label>
+                        <label class="field">
+                            <span>Mặt sân</span>
+                            <input type="text" id="fieldSurface" placeholder="Cỏ nhân tạo">
+                        </label>
+                        <label class="field">
+                            <span>Giá thuê mỗi giờ</span>
+                            <input type="number" id="fieldHourlyRate" min="0" step="1000" placeholder="0" required>
+                        </label>
+                        <label class="field">
+                            <span>Sức chứa</span>
+                            <input type="number" id="fieldCapacity" min="0" step="1" placeholder="0">
+                        </label>
+                        <label class="field">
+                            <span>Trạng thái</span>
+                            <select id="fieldStatus">
+                                <option value="available">Sẵn sàng</option>
+                                <option value="maintenance">Bảo trì</option>
+                                <option value="inactive">Tạm ẩn</option>
+                            </select>
+                        </label>
+                        <label class="field">
+                            <span>Khu vực</span>
+                            <input type="text" id="fieldLocation" placeholder="Khu A, tầng trệt...">
+                        </label>
+                        <label class="field field-span-2">
+                            <span>Tiện ích</span>
+                            <input type="text" id="fieldAmenities" placeholder="Đèn LED, wifi, khán đài, phòng thay đồ...">
+                        </label>
+                        <label class="field field-span-2">
+                            <span>Ghi chú vận hành</span>
+                            <textarea id="fieldNotes" rows="4" placeholder="Ghi chú về khung giờ cao điểm, hạn chế hoặc lưu ý khi khai thác"></textarea>
+                        </label>
+                        <div class="button-row field-span-2">
+                            <button type="submit" class="button-primary"><span id="fieldSubmitLabel">Lưu sân</span></button>
+                            <button type="button" class="button-secondary" id="cancelFieldEdit" style="display:none;">Hủy chỉnh sửa</button>
+                        </div>
+                    </form>
+                </article>
+
+                <article class="panel field-side-note">
+                    <div class="section-head">
+                        <div>
+                            <span class="eyebrow">Mood sân bóng</span>
+                            <h2 class="section-title">Bố cục mới</h2>
+                        </div>
+                    </div>
+                    <div class="field-side-note__stack">
+                        <article class="field-side-note__card">
+                            <span>⚽</span>
+                            <div>
+                                <strong>Ảnh minh họa sân</strong>
+                                <p>Hiển thị trực quan hơn.</p>
+                            </div>
+                        </article>
+                        <article class="field-side-note__card">
+                            <span>🎨</span>
+                            <div>
+                                <strong>Icon sinh động</strong>
+                                <p>Dễ nhìn hơn.</p>
+                            </div>
+                        </article>
+                        <article class="field-side-note__card">
+                            <span>🧭</span>
+                            <div>
+                                <strong>Dễ quan sát hơn</strong>
+                                <p>Xem và sửa nhanh.</p>
+                            </div>
+                        </article>
+                    </div>
+                </article>
+            </section>
+
+            <section class="panel">
+                <div class="section-head">
+                    <div>
+                        <span class="eyebrow">Danh sách sân</span>
+                        <h2 class="section-title">Sân bóng hiện có</h2>
+                    </div>
+                </div>
+                <div class="table-shell">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Sân</th>
+                                <th>Khu vực</th>
+                                <th>Loại và mặt sân</th>
+                                <th>Giá thuê</th>
+                                <th>Trạng thái</th>
+                                <th>Lượt đặt</th>
+                                <th>Doanh thu</th>
+                                <th>Lịch tới</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fieldTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="shell">
+                <p>Credit: Dũngcris</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="js/store.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dichvu.js"></script>
+</body>
+</html>
